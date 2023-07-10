@@ -4,7 +4,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
@@ -20,17 +20,19 @@ import lk.ijse.textEditor.AppInitializer;
 import java.awt.*;
 import java.io.*;
 import java.net.URI;
+import java.sql.SQLException;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class EditorFormController {
 
 
-    String fileName = null;
-    private final Stage stage = AppInitializer.stage;
+    static String fileName = null;
+    private static final Stage stage = AppInitializer.stage;
     @FXML
     private MenuItem openMenu;
     @FXML
-    private TextArea textEditor;
+    private static TextArea textEditor;
     @FXML
     private VBox lineVbox;
 
@@ -44,6 +46,44 @@ public class EditorFormController {
         Platform.runLater(()->lineVbox.getChildren().clear());
         fileName="new text";
         stage.setTitle(fileName);
+    }
+
+    public static void setClose(){
+
+        ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+        ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        Optional<ButtonType> result = new Alert(Alert.AlertType.INFORMATION, "Are you sure to Delete ?", yes, no).showAndWait();
+
+        if(result.orElse(no)==yes){
+            stage.setTitle(fileName);
+
+            DirectoryChooser directoryChooser = new DirectoryChooser();
+            directoryChooser.setTitle("Select a directory");
+
+            File selectedDirectory = directoryChooser.showDialog(null);
+
+            String detail[]=textEditor.getText().split("\n");
+
+            System.out.println(selectedDirectory.getAbsolutePath());
+            try  {
+                FileWriter writer = new FileWriter(selectedDirectory.getAbsolutePath()+"/"+ "samplefile"+".txt");
+
+                BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter(selectedDirectory.getAbsolutePath()+"/"+ "samplefile"+".txt"));
+
+                for (String names :detail) {
+                    bufferedWriter.write("\n"+names);
+                }
+                new Alert(Alert.AlertType.CONFIRMATION,"saved").show();
+                bufferedWriter.close();
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
+        }else {
+            stage.close();
+        }
     }
 
     public void openFile(ActionEvent actionEvent) {

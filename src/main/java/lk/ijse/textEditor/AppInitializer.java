@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import lk.ijse.textEditor.controller.EditorFormController;
 
 import java.util.Objects;
 
@@ -22,7 +23,7 @@ public class AppInitializer extends Application {
         primaryStage.show();
         primaryStage.centerOnScreen();
         primaryStage.setOnCloseRequest((kw)-> {
-
+            EditorFormController.setClose();
         });
     }
 
