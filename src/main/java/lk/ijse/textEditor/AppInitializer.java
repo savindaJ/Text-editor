@@ -21,6 +21,9 @@ public class AppInitializer extends Application {
         primaryStage.setTitle("text Editor !");
         primaryStage.show();
         primaryStage.centerOnScreen();
+        primaryStage.setOnCloseRequest((kw)-> {
+
+        });
     }
 
     public static void main(String[] args) {
