@@ -6,8 +6,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class AppInitializer extends Application {
+
+    public static Stage stage;
     @Override
     public void start(Stage primaryStage) throws Exception {
+        stage=primaryStage;
         Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/view/editor-form.fxml")));
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);

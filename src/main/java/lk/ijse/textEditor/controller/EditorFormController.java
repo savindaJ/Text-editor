@@ -6,12 +6,15 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import lk.ijse.textEditor.AppInitializer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,12 +22,18 @@ import java.util.Scanner;
 
 public class EditorFormController {
 
+
+    private final Stage stage = AppInitializer.stage;
+    @FXML
+    private MenuItem openMenu;
     @FXML
     private TextArea textEditor;
     @FXML
     private VBox lineVbox;
 
     private int line = 0;
+
+    private String openFilePath = null;
 
     public void openNew(ActionEvent actionEvent) {
 
@@ -39,6 +48,9 @@ public class EditorFormController {
         File selectedFile = fileChooser.showOpenDialog(null);
 
         if (selectedFile!=null){
+            openFilePath = selectedFile.getAbsolutePath();
+            String[] split = openFilePath.split("\\\\");
+            stage.setTitle(split[split.length-1]);
 
             try {
                 Scanner input = new Scanner(selectedFile);
