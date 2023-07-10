@@ -27,27 +27,42 @@ public class EditorFormController {
     private int line = 0;
 
     public void openNew(ActionEvent actionEvent) {
+
+
+    }
+
+    public void openFile(ActionEvent actionEvent) {
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("select txt");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("txt files", "*.txt"));
         File selectedFile = fileChooser.showOpenDialog(null);
 
         if (selectedFile!=null){
-            String path =selectedFile.getAbsolutePath();
-    try {
-            Scanner input = new Scanner(selectedFile);
-            while (input.hasNext()) {
-            String line = input.nextLine();
-            textEditor.appendText("\n"+line);
-            }
+
+            try {
+                Scanner input = new Scanner(selectedFile);
+                while (input.hasNext()) {
+
+                    String textLine = input.nextLine();
+                    line++;
+
+                    HBox hBox = new HBox();
+                    Label label = new Label();
+                    label.setStyle("-fx-font-size: 15");
+                    label.setText(String.valueOf(line));
+                    hBox.setAlignment(Pos.CENTER);
+                    hBox.getChildren().add(label);
+                    Platform.runLater(()->lineVbox.getChildren().addAll(hBox));
+
+                    textEditor.appendText("\n"+textLine);
+
+                }
+
             } catch (FileNotFoundException e) {
-            new Alert(Alert.AlertType.ERROR,"something else !").show();
+                new Alert(Alert.AlertType.ERROR,"something else !").show();
             }
         }
-
-    }
-
-    public void openFile(ActionEvent actionEvent) {
     }
 
     public void saveFile(ActionEvent actionEvent) {
