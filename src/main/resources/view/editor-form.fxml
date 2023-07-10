@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -47,5 +48,7 @@
             <VBox fx:id="lineVbox" prefHeight="662.0" prefWidth="53.0" />
          </content>
       </ScrollPane>
+      <Label layoutX="1073.0" layoutY="4.0" text="Developed by savindaJ" />
+      <Label layoutX="185.0" layoutY="6.0" text="version 1.0.0" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="6.0" />
    </children>
 </AnchorPane>

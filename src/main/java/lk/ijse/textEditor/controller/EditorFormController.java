@@ -8,7 +8,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
@@ -40,8 +39,11 @@ public class EditorFormController {
     private String openFilePath = null;
 
     public void openNew(ActionEvent actionEvent) {
-
-
+        textEditor.setText("");
+        openFilePath="";
+        Platform.runLater(()->lineVbox.getChildren().clear());
+        fileName="new text";
+        stage.setTitle(fileName);
     }
 
     public void openFile(ActionEvent actionEvent) {
@@ -84,6 +86,8 @@ public class EditorFormController {
 
     public void saveFile(ActionEvent actionEvent) throws IOException {
 
+        stage.setTitle(fileName);
+
         String detail[]= textEditor.getText().split("\n");
         try {
             BufferedWriter writer=new BufferedWriter(new FileWriter(openFilePath));
@@ -101,6 +105,8 @@ public class EditorFormController {
     }
 
     public void saveAs(ActionEvent actionEvent) {
+
+        stage.setTitle(fileName);
 
         String newPath;
 
@@ -151,9 +157,7 @@ public class EditorFormController {
     }
 
     public void viewHelp(ActionEvent actionEvent) throws IOException {
-
         Desktop.getDesktop().browse(URI.create("https://github.com/savindaJ"));
-
     }
 
     public void keyPressedArea(KeyEvent keyEvent) {
