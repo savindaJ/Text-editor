@@ -29,8 +29,6 @@ public class EditorFormController {
     static String fileName = null;
     private static final Stage stage = AppInitializer.stage;
     @FXML
-    private MenuItem openMenu;
-    @FXML
     private static TextArea textEditor;
     @FXML
     private VBox lineVbox;
