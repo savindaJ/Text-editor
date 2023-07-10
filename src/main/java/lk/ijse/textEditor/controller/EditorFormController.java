@@ -24,6 +24,7 @@ import java.util.Scanner;
 public class EditorFormController {
 
 
+    String fileName = null;
     private final Stage stage = AppInitializer.stage;
     @FXML
     private MenuItem openMenu;
@@ -51,6 +52,7 @@ public class EditorFormController {
         if (selectedFile!=null){
             openFilePath = selectedFile.getAbsolutePath();
             String[] split = openFilePath.split("\\\\");
+            fileName=split[split.length-1];
             stage.setTitle(split[split.length-1]);
 
             try {
@@ -103,4 +105,7 @@ public class EditorFormController {
         }
     }
 
+    public void keyTyped(KeyEvent keyEvent) {
+        stage.setTitle("*"+fileName);
+    }
 }
