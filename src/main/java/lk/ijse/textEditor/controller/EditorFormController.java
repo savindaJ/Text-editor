@@ -18,7 +18,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lk.ijse.textEditor.AppInitializer;
 
+import java.awt.*;
 import java.io.*;
+import java.net.URI;
 import java.util.Scanner;
 
 public class EditorFormController {
@@ -113,7 +115,6 @@ public class EditorFormController {
         try  {
             FileWriter writer = new FileWriter(selectedDirectory.getAbsolutePath()+"/"+ "samplefile"+".txt");
 
-
                 BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter(selectedDirectory.getAbsolutePath()+"/"+ "samplefile"+".txt"));
 
                 for (String names :detail) {
@@ -126,13 +127,33 @@ public class EditorFormController {
 
             e.printStackTrace();
         }
-            new Alert(Alert.AlertType.CONFIRMATION,"saved !").show();
     }
 
     public void viewDelete(ActionEvent actionEvent) {
+        System.out.println(openFilePath);
+
+        String[] split = openFilePath.split("\\\\");
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < split.length - 1; i++) {
+            stringBuilder.append(i);
+        }
+
+        String newPath = String.valueOf(stringBuilder);
+
+        File file = new File(newPath+"/"+split[split.length-1]);
+
+        boolean delete = file.delete();
+
+        if (delete) new Alert(Alert.AlertType.CONFIRMATION,"deleted !").show();
+
+        else new Alert(Alert.AlertType.ERROR,"under development !").show();
     }
 
-    public void viewHelp(ActionEvent actionEvent) {
+    public void viewHelp(ActionEvent actionEvent) throws IOException {
+
+        Desktop.getDesktop().browse(URI.create("https://github.com/savindaJ"));
+
     }
 
     public void keyPressedArea(KeyEvent keyEvent) {
