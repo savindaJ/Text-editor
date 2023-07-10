@@ -80,7 +80,25 @@ public class EditorFormController {
         }
     }
 
-    public void saveFile(ActionEvent actionEvent) {
+    public void saveFile(ActionEvent actionEvent) throws IOException {
+
+        String detail[]= textEditor.getText().split("\n");
+        try {
+            BufferedWriter writer=new BufferedWriter(new FileWriter(openFilePath));
+
+            for (String names :detail) {
+                writer.write("\n"+names);
+            }
+            new Alert(Alert.AlertType.CONFIRMATION,"saved").show();
+            writer.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void saveAs(ActionEvent actionEvent) {
 
         String newPath = null;
 
@@ -107,20 +125,9 @@ public class EditorFormController {
         } else {
             new Alert(Alert.AlertType.ERROR,"not selected !").show();
         }
-    }
 
-    public void saveAs(ActionEvent actionEvent) {
 
-        for (String s : textEditor.getText().split("\n")) {
-            try {
-                BufferedWriter writer=new BufferedWriter(new FileWriter(openFilePath+fileName+".txt"));
-                writer.write(s);
-            } catch (IOException e) {
-                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-            }
-        }
 
-        new Alert(Alert.AlertType.CONFIRMATION,"saved !").show();
     }
 
     public void viewDelete(ActionEvent actionEvent) {
