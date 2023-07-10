@@ -13,12 +13,15 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lk.ijse.textEditor.AppInitializer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class EditorFormController {
@@ -82,6 +85,25 @@ public class EditorFormController {
 
     public void saveFile(ActionEvent actionEvent) {
 
+        String newPath = null;
+
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Select a directory");
+
+        File selectedDirectory = directoryChooser.showDialog(null);
+        if (selectedDirectory != null) {
+            newPath=selectedDirectory.getAbsolutePath();
+        } else {
+            new Alert(Alert.AlertType.ERROR,"not selected !").show();
+        }
+
+        for (String s : textEditor.getText().split("\n")) {
+            try (FileWriter fileWriter = new FileWriter(newPath)){
+                fileWriter.write(s);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     public void saveAs(ActionEvent actionEvent) {
