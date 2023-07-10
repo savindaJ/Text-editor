@@ -18,10 +18,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lk.ijse.textEditor.AppInitializer;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class EditorFormController {
@@ -91,30 +88,39 @@ public class EditorFormController {
         directoryChooser.setTitle("Select a directory");
 
         File selectedDirectory = directoryChooser.showDialog(null);
+
         if (selectedDirectory != null) {
+
             newPath=selectedDirectory.getAbsolutePath();
+
+            for (String s : textEditor.getText().split("\n")) {
+                try {
+                    BufferedWriter writer=new BufferedWriter(new FileWriter(newPath+"/"+fileName+".txt"));
+                    writer.write(s);
+                } catch (IOException e) {
+                    new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+                }
+            }
+
+            new Alert(Alert.AlertType.CONFIRMATION,"saved !").show();
+
         } else {
             new Alert(Alert.AlertType.ERROR,"not selected !").show();
-        }
-
-        for (String s : textEditor.getText().split("\n")) {
-            try (FileWriter fileWriter = new FileWriter(newPath)){
-                fileWriter.write(s);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
         }
     }
 
     public void saveAs(ActionEvent actionEvent) {
 
         for (String s : textEditor.getText().split("\n")) {
-            try (FileWriter fileWriter = new FileWriter(openFilePath)){
-                fileWriter.write(s);
+            try {
+                BufferedWriter writer=new BufferedWriter(new FileWriter(openFilePath+fileName+".txt"));
+                writer.write(s);
             } catch (IOException e) {
                 new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
             }
         }
+
+        new Alert(Alert.AlertType.CONFIRMATION,"saved !").show();
     }
 
     public void viewDelete(ActionEvent actionEvent) {
