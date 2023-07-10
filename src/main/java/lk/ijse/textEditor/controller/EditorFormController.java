@@ -100,34 +100,24 @@ public class EditorFormController {
 
     public void saveAs(ActionEvent actionEvent) {
 
-        String newPath = null;
+        String newPath;
 
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Select a directory");
 
         File selectedDirectory = directoryChooser.showDialog(null);
 
-        if (selectedDirectory != null) {
+        String user="kamal";
+        String detail[]={"savinda","jayasekara","dickwalla","200223801534"};
 
-            newPath=selectedDirectory.getAbsolutePath();
-
-            for (String s : textEditor.getText().split("\n")) {
-                try {
-                    BufferedWriter writer=new BufferedWriter(new FileWriter(newPath+"/"+fileName+".txt"));
-                    writer.write(s);
-                } catch (IOException e) {
-                    new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-                }
-            }
-
-            new Alert(Alert.AlertType.CONFIRMATION,"saved !").show();
-
-        } else {
-            new Alert(Alert.AlertType.ERROR,"not selected !").show();
+        try  {
+            FileWriter writer = new FileWriter(selectedDirectory.getAbsolutePath());
+            System.out.println("New file created successfully.");
+        } catch (IOException e) {
+            System.out.println("An error occurred while creating the new file.");
+            e.printStackTrace();
         }
-
-
-
+            new Alert(Alert.AlertType.CONFIRMATION,"saved !").show();
     }
 
     public void viewDelete(ActionEvent actionEvent) {
