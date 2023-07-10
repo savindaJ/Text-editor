@@ -107,14 +107,23 @@ public class EditorFormController {
 
         File selectedDirectory = directoryChooser.showDialog(null);
 
-        String user="kamal";
-        String detail[]={"savinda","jayasekara","dickwalla","200223801534"};
+        String detail[]=textEditor.getText().split("\n");
 
+        System.out.println(selectedDirectory.getAbsolutePath());
         try  {
-            FileWriter writer = new FileWriter(selectedDirectory.getAbsolutePath());
-            System.out.println("New file created successfully.");
+            FileWriter writer = new FileWriter(selectedDirectory.getAbsolutePath()+"/"+ "samplefile"+".txt");
+
+
+                BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter(selectedDirectory.getAbsolutePath()+"/"+ "samplefile"+".txt"));
+
+                for (String names :detail) {
+                    bufferedWriter.write("\n"+names);
+                }
+                new Alert(Alert.AlertType.CONFIRMATION,"saved").show();
+                bufferedWriter.close();
+
         } catch (IOException e) {
-            System.out.println("An error occurred while creating the new file.");
+
             e.printStackTrace();
         }
             new Alert(Alert.AlertType.CONFIRMATION,"saved !").show();
