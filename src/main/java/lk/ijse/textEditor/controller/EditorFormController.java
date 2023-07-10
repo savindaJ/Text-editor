@@ -20,7 +20,6 @@ import lk.ijse.textEditor.AppInitializer;
 import java.awt.*;
 import java.io.*;
 import java.net.URI;
-import java.sql.SQLException;
 import java.util.Optional;
 import java.util.Scanner;
 
