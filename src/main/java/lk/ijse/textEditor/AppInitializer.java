@@ -3,6 +3,7 @@ package lk.ijse.textEditor;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class AppInitializer extends Application {
@@ -14,6 +15,7 @@ public class AppInitializer extends Application {
         Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/view/editor-form.fxml")));
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
+        primaryStage.getIcons().add(new Image("icons8-editor-64.png"));
         primaryStage.setTitle("text Editor !");
         primaryStage.show();
         primaryStage.centerOnScreen();
