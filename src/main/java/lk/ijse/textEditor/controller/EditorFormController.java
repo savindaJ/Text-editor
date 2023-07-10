@@ -81,9 +81,11 @@ public class EditorFormController {
     }
 
     public void saveFile(ActionEvent actionEvent) {
+
     }
 
     public void saveAs(ActionEvent actionEvent) {
+
     }
 
     public void viewDelete(ActionEvent actionEvent) {
@@ -105,7 +107,7 @@ public class EditorFormController {
         }
     }
 
-    public void keyTyped(KeyEvent keyEvent) {
+    public void keyTyped() {
         stage.setTitle("*"+fileName);
     }
 }
