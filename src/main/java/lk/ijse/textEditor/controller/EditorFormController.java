@@ -108,6 +108,13 @@ public class EditorFormController {
 
     public void saveAs(ActionEvent actionEvent) {
 
+        for (String s : textEditor.getText().split("\n")) {
+            try (FileWriter fileWriter = new FileWriter(openFilePath)){
+                fileWriter.write(s);
+            } catch (IOException e) {
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            }
+        }
     }
 
     public void viewDelete(ActionEvent actionEvent) {
