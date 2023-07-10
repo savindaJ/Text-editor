@@ -20,6 +20,7 @@ import lk.ijse.textEditor.AppInitializer;
 import java.awt.*;
 import java.io.*;
 import java.net.URI;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -28,6 +29,8 @@ public class EditorFormController {
 
     static String fileName = null;
     private static final Stage stage = AppInitializer.stage;
+    @FXML
+    private MenuItem openMenu;
     @FXML
     private static TextArea textEditor;
     @FXML
@@ -43,7 +46,6 @@ public class EditorFormController {
         Platform.runLater(()->lineVbox.getChildren().clear());
         fileName="new text";
         stage.setTitle(fileName);
-        line=0;
     }
 
     public static void setClose(){
