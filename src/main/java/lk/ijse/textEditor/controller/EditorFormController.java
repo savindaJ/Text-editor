@@ -10,6 +10,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+
+import java.io.File;
 
 public class EditorFormController {
 
@@ -21,6 +24,15 @@ public class EditorFormController {
     private int line = 0;
 
     public void openNew(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("select txt");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("txt files", "*.txt"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        if (selectedFile!=null){
+            String path =selectedFile.getAbsolutePath();
+        }
+
     }
 
     public void openFile(ActionEvent actionEvent) {
