@@ -30,6 +30,7 @@ public class EditorFormController {
     public Label lblLine;
     public Label lblWords;
     public Label lblChars;
+    public Label lblFileName;
     @FXML
     private VBox lineVbox;
     private int line = 0;
@@ -40,6 +41,7 @@ public class EditorFormController {
         Platform.runLater(()->lineVbox.getChildren().clear());
         fileName="new text";
         stage.setTitle(fileName);
+        lblFileName.setText(fileName==null ? "empty !" :  fileName);
         line=0;
         lblChars.setText("0");
         lblWords.setText("0");
@@ -95,7 +97,9 @@ public class EditorFormController {
             openFilePath = selectedFile.getAbsolutePath();
             String[] split = openFilePath.split("\\\\");
             fileName=split[split.length-1];
+
             stage.setTitle(split[split.length-1]);
+            lblFileName.setText(split[split.length-1]);
 
             try {
                 Scanner input = new Scanner(selectedFile);
@@ -124,6 +128,7 @@ public class EditorFormController {
     public void saveFile(ActionEvent actionEvent) throws IOException {
 
         stage.setTitle(fileName);
+        lblFileName.setText(fileName);
 
         String detail[]= textEditorS.getText().split("\n");
         try {
@@ -144,7 +149,7 @@ public class EditorFormController {
     public void saveAs(ActionEvent actionEvent) {
 
         stage.setTitle(fileName);
-
+        lblFileName.setText(fileName);
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Select a directory");
 
@@ -250,7 +255,8 @@ public class EditorFormController {
 
     public void keyTyped() {
         setDetails();
-        stage.setTitle("*"+fileName);
+        stage.setTitle(fileName==null ? "empty !" :"*"+ fileName);
+        lblFileName.setText(fileName==null ? "empty !" :"*"+ fileName);
     }
 
     public void setDetails(){

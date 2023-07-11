@@ -49,12 +49,13 @@
          </content>
       </ScrollPane>
       <Label layoutX="1073.0" layoutY="4.0" text="Developed by savindaJ" />
-      <Label layoutX="185.0" layoutY="6.0" text="version 1.0.0" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="6.0" />
+      <Label layoutX="6.0" layoutY="681.0" text="version 1.0.0" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="681.0" />
       <Label layoutX="943.0" layoutY="680.0" text="lines :" />
       <Label fx:id="lblLine" layoutX="976.0" layoutY="681.0" prefHeight="17.0" prefWidth="38.0" text="00000" />
       <Label layoutX="1022.0" layoutY="680.0" text="words :" />
       <Label fx:id="lblWords" layoutX="1064.0" layoutY="681.0" prefHeight="17.0" prefWidth="38.0" text="00000" />
       <Label layoutX="1107.0" layoutY="681.0" text="chars :" />
       <Label fx:id="lblChars" layoutX="1146.0" layoutY="682.0" prefHeight="17.0" prefWidth="38.0" text="00000" />
+      <Label fx:id="lblFileName" layoutX="511.0" layoutY="3.0" prefHeight="13.0" prefWidth="110.0" />
    </children>
 </AnchorPane>
