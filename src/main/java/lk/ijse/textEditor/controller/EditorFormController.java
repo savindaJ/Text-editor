@@ -45,6 +45,7 @@ public class EditorFormController {
         Platform.runLater(()->lineVbox.getChildren().clear());
         fileName="new text";
         stage.setTitle(fileName);
+        line=0;
     }
 
    /* public static void setClose(){
