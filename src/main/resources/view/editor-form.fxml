@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="698.0" prefWidth="1200.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.textEditor.controller.EditorFormController">
    <children>
-      <TextArea fx:id="textEditorS" layoutY="24.0" onKeyPressed="#keyPressedArea" onKeyTyped="#keyTyped" prefHeight="674.0" prefWidth="1143.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+      <TextArea fx:id="textEditorS" layoutY="24.0" onKeyPressed="#keyPressedArea" onKeyTyped="#keyTyped" prefHeight="655.0" prefWidth="1143.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
          <font>
             <Font size="16.0" />
          </font>
@@ -43,12 +43,18 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </MenuBar>
-      <ScrollPane layoutX="-61.0" layoutY="81.0" prefHeight="672.0" prefWidth="57.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0">
+      <ScrollPane layoutX="-61.0" layoutY="81.0" prefHeight="656.0" prefWidth="57.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0">
          <content>
-            <VBox fx:id="lineVbox" prefHeight="662.0" prefWidth="53.0" />
+            <VBox fx:id="lineVbox" prefHeight="654.0" prefWidth="53.0" />
          </content>
       </ScrollPane>
       <Label layoutX="1073.0" layoutY="4.0" text="Developed by savindaJ" />
       <Label layoutX="185.0" layoutY="6.0" text="version 1.0.0" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="6.0" />
+      <Label layoutX="943.0" layoutY="680.0" text="lines :" />
+      <Label fx:id="lblLine" layoutX="976.0" layoutY="681.0" prefHeight="17.0" prefWidth="38.0" text="00000" />
+      <Label layoutX="1022.0" layoutY="680.0" text="words :" />
+      <Label fx:id="lblWords" layoutX="1064.0" layoutY="681.0" prefHeight="17.0" prefWidth="38.0" text="00000" />
+      <Label layoutX="1107.0" layoutY="681.0" text="chars :" />
+      <Label fx:id="lblChars" layoutX="1146.0" layoutY="682.0" prefHeight="17.0" prefWidth="38.0" text="00000" />
    </children>
 </AnchorPane>

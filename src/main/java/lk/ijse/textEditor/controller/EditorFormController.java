@@ -19,8 +19,7 @@ import lk.ijse.textEditor.AppInitializer;
 import java.awt.*;
 import java.io.*;
 import java.net.URI;
-import java.sql.SQLException;
-import java.util.Optional;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class EditorFormController {
@@ -31,10 +30,11 @@ public class EditorFormController {
     private static final Stage stage = AppInitializer.stage;
 
     public  TextArea textEditorS;
-
+    public Label lblLine;
+    public Label lblWords;
+    public Label lblChars;
     @FXML
     private VBox lineVbox;
-
     private int line = 0;
 
     private String openFilePath = null;
@@ -113,9 +113,8 @@ public class EditorFormController {
                     hBox.setAlignment(Pos.CENTER);
                     hBox.getChildren().add(label);
                     Platform.runLater(()->lineVbox.getChildren().addAll(hBox));
-
                     textEditorS.appendText("\n"+textLine);
-
+                    setDetails();
                 }
 
             } catch (FileNotFoundException e) {
@@ -201,6 +200,7 @@ public class EditorFormController {
     }
 
     public void keyPressedArea(KeyEvent keyEvent) {
+        setDetails();
         if (keyEvent.getCode()== KeyCode.ENTER) {
             line++;
             HBox hBox = new HBox();
@@ -214,6 +214,16 @@ public class EditorFormController {
     }
 
     public void keyTyped() {
+        setDetails();
         stage.setTitle("*"+fileName);
+    }
+
+    public void setDetails(){
+
+        String [] split = textEditorS.getText().split(" ");
+        System.out.println(Arrays.toString(split));
+        lblWords.setText(String.valueOf(split.length));
+        lblLine.setText(String.valueOf(line));
+        lblChars.setText(String.valueOf(textEditorS.getText().length()));
     }
 }
