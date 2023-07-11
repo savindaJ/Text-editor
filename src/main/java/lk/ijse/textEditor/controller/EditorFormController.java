@@ -24,12 +24,8 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class EditorFormController {
-
-
     static String fileName = null;
-
     private static final Stage stage = AppInitializer.stage;
-
     public  TextArea textEditorS;
     public Label lblLine;
     public Label lblWords;
@@ -37,9 +33,7 @@ public class EditorFormController {
     @FXML
     private VBox lineVbox;
     private int line = 0;
-
     private String openFilePath = null;
-
     public void openNew(ActionEvent actionEvent) {
         textEditorS.setText("");
         openFilePath="";
@@ -47,6 +41,9 @@ public class EditorFormController {
         fileName="new text";
         stage.setTitle(fileName);
         line=0;
+        lblChars.setText("0");
+        lblWords.setText("0");
+        lblLine.setText("0");
     }
 
    /* public static void setClose(){
@@ -174,7 +171,46 @@ public class EditorFormController {
     }
 
     public void viewDelete(ActionEvent actionEvent) {
-        System.out.println(openFilePath);
+
+        /*try {
+            String ss = null;
+            Process p = Runtime.getRuntime().exec("cmd.exe /c start dir ");
+            BufferedWriter writeer = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()));
+            writeer.write("dir");
+            writeer.flush();
+            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+            System.out.println("Here is the standard output of the command:\n");
+            while ((ss = stdInput.readLine()) != null) {
+                System.out.println(ss);
+            }
+            System.out.println("Here is the standard error of the command (if any):\n");
+            while ((ss = stdError.readLine()) != null) {
+                System.out.println(ss);
+            }
+
+        } catch (IOException e) {
+            System.out.println("FROM CATCH" + e.toString());
+        }*/
+
+
+        Process p;
+        try {
+
+            String test = "cmd.exe /c start cmd /k \" javac \"";
+            String command = "cmd /c start cmd.exe"+" /c javac";
+            Process child = Runtime.getRuntime().exec(test);
+            child.waitFor();
+
+//            p = Runtime.getRuntime().exec("cmd /c start cmd.exe");
+//            Runtime.getRuntime().exec("cmd /c javac");
+//            p.waitFor();
+
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+       /* System.out.println(openFilePath);
 
         String[] split = openFilePath.split("\\\\");
 
@@ -191,7 +227,7 @@ public class EditorFormController {
 
         if (delete) new Alert(Alert.AlertType.CONFIRMATION,"deleted !").show();
 
-        else new Alert(Alert.AlertType.ERROR,"under development !").show();
+        else new Alert(Alert.AlertType.ERROR,"under development !").show();*/
     }
 
     public void viewHelp(ActionEvent actionEvent) throws IOException {
