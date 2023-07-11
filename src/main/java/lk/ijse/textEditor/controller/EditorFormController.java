@@ -219,13 +219,19 @@ public class EditorFormController {
 
     public void setDetails(){
 
-        String [] split = textEditorS.getText().split(" ");
+        int count =0;
 
         StringTokenizer tokens = new StringTokenizer(textEditorS.getText());
 
         lblWords.setText(String.valueOf(tokens.countTokens()));
+
         lblLine.setText(String.valueOf(line));
 
-        lblChars.setText(String.valueOf(textEditorS.getText().length()));
+        for (int i = 0; i < textEditorS.getText().length(); i++) {
+            if (!(textEditorS.getText().charAt(i) ==' ')){
+                count++;
+            }
+        }
+        lblChars.setText(String.valueOf(count));
     }
 }
