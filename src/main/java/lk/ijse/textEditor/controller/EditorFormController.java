@@ -21,6 +21,7 @@ import java.io.*;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class EditorFormController {
 
@@ -134,7 +135,7 @@ public class EditorFormController {
             for (String names :detail) {
                 writer.write("\n"+names);
             }
-            new Alert(Alert.AlertType.CONFIRMATION,"saved").show();
+            new Alert(Alert.AlertType.CONFIRMATION,"saved !").show();
             writer.close();
 
         } catch (IOException e) {
@@ -146,8 +147,6 @@ public class EditorFormController {
     public void saveAs(ActionEvent actionEvent) {
 
         stage.setTitle(fileName);
-
-        String newPath;
 
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Select a directory");
@@ -221,9 +220,12 @@ public class EditorFormController {
     public void setDetails(){
 
         String [] split = textEditorS.getText().split(" ");
-        System.out.println(Arrays.toString(split));
-        lblWords.setText(String.valueOf(split.length));
+
+        StringTokenizer tokens = new StringTokenizer(textEditorS.getText());
+
+        lblWords.setText(String.valueOf(tokens.countTokens()));
         lblLine.setText(String.valueOf(line));
+
         lblChars.setText(String.valueOf(textEditorS.getText().length()));
     }
 }
