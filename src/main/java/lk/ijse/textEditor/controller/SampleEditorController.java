@@ -19,35 +19,35 @@ import lk.ijse.textEditor.AppInitializer;
 import java.awt.*;
 import java.io.*;
 import java.net.URI;
-import java.sql.SQLException;
 import java.util.Optional;
 import java.util.Scanner;
 
-public class EditorFormController {
-
-
-    static String fileName = null;
+public class SampleEditorController {
+    public  TextArea areaEditText;
+    public VBox lineVbox;
 
     private static final Stage stage = AppInitializer.stage;
-
-    public  TextArea textEditorS;
-
-    @FXML
-    private VBox lineVbox;
 
     private int line = 0;
 
     private String openFilePath = null;
 
+    static String fileName = null;
+
+    @FXML
+    void initialize(){
+        areaEditText.setText("edited");
+    }
+
     public void openNew(ActionEvent actionEvent) {
-        textEditorS.setText("");
+        areaEditText.setText("");
         openFilePath="";
         Platform.runLater(()->lineVbox.getChildren().clear());
         fileName="new text";
         stage.setTitle(fileName);
     }
 
-   /* public static void setClose(){
+    /*public static void setClose(){
 
         ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
         ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -62,7 +62,7 @@ public class EditorFormController {
 
             File selectedDirectory = directoryChooser.showDialog(null);
 
-            String detail[]=textEditorS.getText().split("\n");
+//            String detail[]=areaEditText.getText().split("\n");
 
             System.out.println(selectedDirectory.getAbsolutePath());
             try  {
@@ -113,7 +113,7 @@ public class EditorFormController {
                     hBox.getChildren().add(label);
                     Platform.runLater(()->lineVbox.getChildren().addAll(hBox));
 
-                    textEditorS.appendText("\n"+textLine);
+                    areaEditText.appendText("\n"+textLine);
 
                 }
 
@@ -127,7 +127,7 @@ public class EditorFormController {
 
         stage.setTitle(fileName);
 
-        String detail[]= textEditorS.getText().split("\n");
+        String detail[]= areaEditText.getText().split("\n");
         try {
             BufferedWriter writer=new BufferedWriter(new FileWriter(openFilePath));
 
@@ -154,19 +154,19 @@ public class EditorFormController {
 
         File selectedDirectory = directoryChooser.showDialog(null);
 
-        String detail[]=textEditorS.getText().split("\n");
+        String detail[]=areaEditText.getText().split("\n");
 
         System.out.println(selectedDirectory.getAbsolutePath());
         try  {
             FileWriter writer = new FileWriter(selectedDirectory.getAbsolutePath()+"/"+ "samplefile"+".txt");
 
-                BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter(selectedDirectory.getAbsolutePath()+"/"+ "samplefile"+".txt"));
+            BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter(selectedDirectory.getAbsolutePath()+"/"+ "samplefile"+".txt"));
 
-                for (String names :detail) {
-                    bufferedWriter.write("\n"+names);
-                }
-                new Alert(Alert.AlertType.CONFIRMATION,"saved").show();
-                bufferedWriter.close();
+            for (String names :detail) {
+                bufferedWriter.write("\n"+names);
+            }
+            new Alert(Alert.AlertType.CONFIRMATION,"saved").show();
+            bufferedWriter.close();
 
         } catch (IOException e) {
 

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.textEditor.controller.SampleEditorController">
+   <children>
+      <TextArea fx:id="areaEditText" layoutX="54.0" layoutY="36.0" prefHeight="358.0" prefWidth="537.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />
+      <ScrollPane layoutY="25.0" prefHeight="672.0" prefWidth="57.0">
+         <content>
+            <VBox fx:id="lineVbox" prefHeight="662.0" prefWidth="53.0" />
+         </content>
+      </ScrollPane>
+      <MenuBar layoutY="2.0" style="-fx-background-color: white;">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#openNew" text="new" />
+                  <MenuItem mnemonicParsing="false" onAction="#openFile" text="open" />
+                  <MenuItem mnemonicParsing="false" onAction="#saveFile" text="save" />
+                  <MenuItem mnemonicParsing="false" onAction="#saveAs" text=" save As" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#viewDelete" text="Delete" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#viewHelp" text="About" />
+               </items>
+            </Menu>
+         </menus>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </MenuBar>
+      <Label layoutX="596.0" layoutY="6.0" text="version 1.0.0" />
+      <Label layoutX="1069.0" layoutY="6.0" text="Developed by savindaJ" />
+   </children>
+</AnchorPane>
