@@ -19,7 +19,6 @@ import lk.ijse.textEditor.AppInitializer;
 import java.awt.*;
 import java.io.*;
 import java.net.URI;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
