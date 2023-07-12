@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import lk.ijse.textEditor.controller.EditorFormController;
 
 import java.util.Objects;
 
@@ -18,7 +17,7 @@ public class AppInitializer extends Application {
         Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/editor-form.fxml"))));
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
-        primaryStage.getIcons().add(new Image("icons8-editor-64.png"));
+        primaryStage.getIcons().add(new Image("assets/icons8-editor-64.png"));
         primaryStage.setTitle("text Editor !");
         primaryStage.show();
         primaryStage.centerOnScreen();
